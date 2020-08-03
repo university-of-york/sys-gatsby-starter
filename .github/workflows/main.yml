@@ -14,7 +14,6 @@ jobs:
       - name: Build front end using Gatsby
         run: |
           npm install -g gatsby-cli
-          cd frontend
           npm install
           gatsby build
       - name: Upload the app
