@@ -1,0 +1,92 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: sys-gatsby-starter
+
+Resources:
+
+  # S3 buckets and their corresponding policies
+  FrontendS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      Tags:
+        - Key: name
+          Value: Frontend S3 bucket
+        - Key: group
+          Value: SYS
+        - Key: project
+          Value: Gatsby
+        - Key: status
+          Value: prod
+        - Key: pushed_by
+          Value: github
+        - Key: defined_in
+          Value: cloudformation
+        - Key: user
+          Value: pgg505
+
+  FrontendBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref FrontendS3Bucket
+      PolicyDocument:
+        Id: FrontendPolicyRule
+        Version: 2012-10-17
+        Statement:
+          - Sid: PublicReadForGetBucketObjects
+            Effect: Allow
+            Principal:
+              AWS: !Join
+                - ' '
+                - - 'arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity'
+                  - !Ref OriginAccessIdentity
+            Action: ['s3:GetObject']
+            Resource: !Join
+              - ''
+              - - 'arn:aws:s3:::'
+                - !Ref FrontendS3Bucket
+                - /*
+          - Effect: Allow
+            Principal:
+              AWS: 'arn:aws:iam::326340845860:user/github-gatsby-deploy'
+            Action: ['s3:PutObject']
+            Resource: !Join
+              - ''
+              - - 'arn:aws:s3:::'
+                - !Ref FrontendS3Bucket
+                - /*
+
+  # CNAMEs are added manually - due to certain permissions, CloudFormation
+  # cannot add these yet.
+  CloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        IPV6Enabled: true
+        DefaultCacheBehavior:
+          ForwardedValues:
+            QueryString: false
+          TargetOriginId: S3FrontendOrigin
+          ViewerProtocolPolicy: redirect-to-https
+        DefaultRootObject: index.html
+        Origins:
+          - S3OriginConfig:
+              OriginAccessIdentity: !Join
+                - '/'
+                - - 'origin-access-identity'
+                  - 'cloudfront'
+                  - !Ref OriginAccessIdentity
+            # yamllint disable-line rule:line-length
+            DomainName: !GetAtt FrontendS3Bucket.DomainName
+            Id: S3FrontendOrigin
+
+  OriginAccessIdentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties: 
+      CloudFrontOriginAccessIdentityConfig: 
+        Comment: 'Ensures the S3 bucket is only accessible via CloudFront.'
+
+Outputs:
+  FrontendBucketIdentifier:
+    Value: !Ref FrontendS3Bucket
