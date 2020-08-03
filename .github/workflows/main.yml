@@ -16,12 +16,6 @@ jobs:
           npm install -g gatsby-cli
           npm install
           gatsby build
-      - name: Upload the app
-        uses: actions/upload-artifact@v1
-        with:
-          name: app
-          path: frontend/public
-
       - name: Deploy to AWS
         uses: university-of-york/aws-sam-deploy-action@v1.1.1
         env:
