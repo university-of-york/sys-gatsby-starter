@@ -22,8 +22,8 @@ jobs:
           TEMPLATE: 'template.yml'
           AWS_STACK_NAME: 'sys-gatsby-starter'
           AWS_REGION: 'eu-west-1'
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEPLOY_BUCKET: ${{ secrets.AWS_GLOBAL_ARTIFACT_BUCKET }}
           ROLE_ARN: 'arn:aws:iam::326340845860:role/GithubActionsDeploymentRole'
       - name: Deploy Gatsby app
