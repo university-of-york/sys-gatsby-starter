@@ -12,47 +12,47 @@ Parameters:
 Resources:
   # An IAM role that will be used by the app to run any required Amplify calls.
   AmplifyAppRole:
-      Type: AWS::IAM::Role
-      Properties:
-        AssumeRolePolicyDocument:
-          Version: 2012-10-17
-          Statement:
-            - Effect: Allow
-              Principal:
-                Service:
-                  - amplify.amazonaws.com
-              Action:
-                - sts:AssumeRole
-        Policies:
-          - PolicyName: Amplify
-            PolicyDocument:
-              Version: 2012-10-17
-              Statement:
-                - Effect: Allow
-                  Action: "amplify:*"
-                  Resource: !GetAtt GatsbyStarterApp.Arn
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - amplify.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Policies:
+        - PolicyName: Amplify
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action: "amplify:*"
+                Resource: !GetAtt GatsbyStarterApp.Arn
 
   # Gatsby Amplify app.
   GatsbyStarterApp:
-      Type: "AWS::Amplify::App"
-      Properties:
-        Name: GatsbyStarterApp
-        Repository: https://github.com/university-of-york/sys-gatsby-starter.git
-        Description: Gatsby starter application
-        OauthToken: !Ref PersonalAccessToken
-        BuildSpec: |-
-          version: 0.1
-          frontend:
-            phases:
-              build:
-                commands:
-                  - npm install
-                  - gatsby build
-            artifacts:
-              baseDirectory: public
-              files:
-                - '*'
-        IAMServiceRole: !GetAtt AmplifyRole.Arn
+    Type: "AWS::Amplify::App"
+    Properties:
+      Name: GatsbyStarterApp
+      Repository: https://github.com/university-of-york/sys-gatsby-starter.git
+      Description: Gatsby starter application
+      OauthToken: !Ref PersonalAccessToken
+      BuildSpec: |-
+        version: 0.1
+        frontend:
+          phases:
+            build:
+              commands:
+                - npm install
+                - gatsby build
+          artifacts:
+            baseDirectory: public
+            files:
+              - '*'
+      IAMServiceRole: !GetAtt AmplifyRole.Arn
 
   # Master branch app.
   AmplifyMasterBranch:
