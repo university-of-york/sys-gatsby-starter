@@ -18,4 +18,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEPLOY_BUCKET: ${{ secrets.AWS_GLOBAL_ARTIFACT_BUCKET }}
           ROLE_ARN: 'arn:aws:iam::326340845860:role/GithubActionsDeploymentRole'
-          PARAMETER_OVERRIDES: PersonalAccessToken=${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          PARAMETER_OVERRIDES: PersonalAccessToken=foo
