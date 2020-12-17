@@ -4,7 +4,7 @@ Transform: AWS::Serverless-2016-10-31
 Description: sys-gatsby-starter
 
 Parameters:
- PersonalAccessToken:
+  PersonalAccessToken:
     Type: String
     Description: GitHub personal access token for Amplify
     NoEcho: true
