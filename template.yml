@@ -5,8 +5,6 @@ Description: sys-gatsby-starter
 
 Parameters:
   PersonalAccessToken:
-    Type: String
-    Description: GitHub personal access token for Amplify
     NoEcho: true
 
 Resources:
