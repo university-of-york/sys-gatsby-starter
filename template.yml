@@ -28,7 +28,7 @@ Resources:
             Statement:
               - Effect: Allow
                 Action: "amplify:*"
-                Resource: !GetAtt GatsbyStarterApp.Arn
+                Resource: "*"
 
   # Gatsby Amplify app.
   GatsbyStarterApp:
