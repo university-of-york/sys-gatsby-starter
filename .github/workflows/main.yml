@@ -13,4 +13,4 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          aws cloudformation deploy --template-file template.yml --stack-name sys-gatsby-starter --parameter-overrides PersonalAccessToken=${{ secrets.PERSONAL_ACCESS_TOKEN }} --debug
+          aws cloudformation deploy --template-file template.yml --stack-name sys-gatsby-starter --parameter-overrides PersonalAccessToken=${{ secrets.PERSONAL_ACCESS_TOKEN }} --debug --capabilities CAPABILITY_IAM
