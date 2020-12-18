@@ -4,6 +4,7 @@ Description: sys-gatsby-starter
 
 Parameters:
   PersonalAccessToken:
+    Type: String
     NoEcho: true
 
 Resources:
