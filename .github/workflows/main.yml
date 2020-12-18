@@ -18,6 +18,6 @@ jobs:
           AWS_DEPLOY_BUCKET: ${{ secrets.AWS_GLOBAL_ARTIFACT_BUCKET }}
           ROLE_ARN: 'arn:aws:iam::326340845860:role/GithubActionsDeploymentRole'
           CAPABILITIES: 'CAPABILITY_IAM'
-          OVERRIDES: PersonalAccessToken=${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          PARAMETER_OVERRIDES: PersonalAccessToken=${{ secrets.PERSONAL_ACCESS_TOKEN }}
           TAGS: group=SYS project=GATSBY status=prod pushed_by=github defined_in=cloudformation user=pgg505
           FORCE_UPLOAD: true
