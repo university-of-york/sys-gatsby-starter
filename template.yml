@@ -49,7 +49,7 @@ Resources:
           artifacts:
             baseDirectory: public
             files:
-              - '*'
+              - "**/*"
       IAMServiceRole: !GetAtt AmplifyAppRole.Arn
 
   # Master branch app.
