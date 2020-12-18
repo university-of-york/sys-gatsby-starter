@@ -50,7 +50,7 @@ Resources:
             baseDirectory: public
             files:
               - '*'
-      IAMServiceRole: !GetAtt AmplifyRole.Arn
+      IAMServiceRole: !GetAtt AmplifyAppRole.Arn
 
   # Master branch app.
   AmplifyMasterBranch:
