@@ -35,7 +35,7 @@ Resources:
     Type: "AWS::Amplify::App"
     Properties:
       Name: GatsbyStarterApp
-      Repository: https://github.com/university-of-york/sys-gatsby-starter
+      Repository: https://github.com/university-of-york/sys-gatsby-starter.git
       Description: Gatsby starter application
       OauthToken: !Ref PersonalAccessToken
       BuildSpec: |-
