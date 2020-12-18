@@ -63,6 +63,7 @@ Resources:
   # Custom domain name for the Amplify app.
   AmplifyAppDomain:
     Type: AWS::Amplify::Domain
+    DependsOn: AmplifyMasterBranch
     Properties:
       DomainName: gatsby.york.ac.uk
       AppId: !GetAtt GatsbyStarterApp.AppId
