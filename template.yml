@@ -59,3 +59,13 @@ Resources:
       BranchName: master
       AppId: !GetAtt GatsbyStarterApp.AppId
       EnableAutoBuild: true
+
+  # Custom domain name for the Amplify app.
+  AmplifyAppDomain:
+    Type: AWS::Amplify::Domain
+    Properties:
+      DomainName: gatsby.york.ac.uk
+      AppId: !GetAtt GatsbyStarterApp.AppId
+      SubDomainSettings:
+        - Prefix: master
+          BranchName: master
