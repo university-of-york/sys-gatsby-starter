@@ -67,5 +67,5 @@ Resources:
       DomainName: gatsby.york.ac.uk
       AppId: !GetAtt GatsbyStarterApp.AppId
       SubDomainSettings:
-        - Prefix: master
+        - Prefix: starter
           BranchName: master
