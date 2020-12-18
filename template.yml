@@ -54,8 +54,8 @@ Resources:
 
   # Master branch app.
   AmplifyMasterBranch:
-  Type: AWS::Amplify::Branch
-  Properties:
-    BranchName: master
-    AppId: !GetAtt GatsbyStarterApp.AppId
-    EnableAutoBuild: true
+    Type: AWS::Amplify::Branch
+    Properties:
+      BranchName: master
+      AppId: !GetAtt GatsbyStarterApp.AppId
+      EnableAutoBuild: true
